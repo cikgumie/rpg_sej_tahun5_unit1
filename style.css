@@ -1,0 +1,76 @@
+/* Define CSS variables for gradient colors */
+:root {
+    --gradient-from: #fff8e1; /* Tailwind yellow-50 */
+    --gradient-via: #fffaf0; /* Tailwind orange-50 (approx) */
+    --gradient-to: #ffe0b2;   /* Tailwind red-50 (approx) */
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(to bottom right, var(--gradient-from), var(--gradient-via), var(--gradient-to));
+}
+@keyframes bounce-in {
+    0% { transform: scale(0.9); opacity: 0; }
+    50% { transform: scale(1.05); opacity: 1; }
+    100% { transform: scale(1); opacity: 1; }
+}
+.modal {
+    animation: bounce-in 0.3s ease-out;
+}
+.stat-change {
+    position: absolute;
+    right: -20px;
+    top: 0;
+    animation: fade-up 1s ease-out forwards;
+}
+@keyframes fade-up {
+    from { opacity: 1; transform: translateY(0); }
+    to { opacity: 0; transform: translateY(-20px); }
+}
+
+/* Base sidebar styles */
+.sidebar-panel {
+    transition: transform 0.3s ease-in-out;
+    /* Default for desktop: block, takes 1/4 col */
+    display: block;
+}
+
+/* Mobile specific styles (<= 1023px) */
+@media (max-width: 1023px) {
+    .sidebar-panel {
+        position: fixed;
+        inset: 0;
+        z-index: 40;
+        transform: translateX(-100%); /* Start hidden on mobile */
+        background: linear-gradient(to bottom right, var(--gradient-from), var(--gradient-via), var(--gradient-to)); /* Apply gradient background */
+        padding: 1rem; /* Add back padding lost from lg:p-0 */
+        overflow-y: auto; /* Allow scrolling if content overflows */
+    }
+    .main-content-area {
+        grid-column: span 4 / span 4; /* Always full width on mobile */
+    }
+    /* When sidebar is open on mobile */
+    body.sidebar-open .sidebar-panel {
+        transform: translateX(0);
+    }
+}
+
+/* Desktop specific styles (>= 1024px) */
+@media (min-width: 1024px) {
+    .sidebar-panel {
+        grid-column: span 1 / span 1; /* Takes 1 column on desktop */
+        position: relative; /* Restore relative positioning */
+        transform: translateX(0); /* Ensure no transform */
+    }
+    /* When sidebar is NOT open on desktop (i.e., hidden) */
+    body:not(.sidebar-open) .sidebar-panel {
+        display: none; /* Hide completely */
+    }
+    /* When sidebar is NOT open on desktop, main content expands */
+    body:not(.sidebar-open) .main-content-area {
+        grid-column: span 4 / span 4; /* Take full width */
+    }
+    body.sidebar-open .main-content-area {
+        grid-column: span 3 / span 3; /* Default 3/4 width */
+    }
+}
