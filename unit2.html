@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legenda Daulat - Unit 2: Agama Islam di Malaysia</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/cikgumie/rpg_sej_tahun5_unit1@main/style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body class="min-h-screen p-4">
+    <div class="max-w-6xl mx-auto">
+        <!-- Header -->
+        <div class="text-center mb-6">
+            <h1 class="text-4xl font-bold text-amber-900 mb-2 flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 mr-3 text-yellow-600"><path d="m14 6 4-4 6 6-4 4"></path><path d="m5 11 4 4 6-6-4-4"></path><path d="M2 13 4 8l2 2-2 5Z"></path><path d="M22 13 20 8l-2 2 2 5Z"></path><path d="M12 22 4 15l10-10 8 7Z"></path></svg>
+                Legenda Daulat - Unit 2
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 ml-3 text-yellow-600"><path d="m14 6 4-4 6 6-4 4"></path><path d="m5 11 4 4 6-6-4-4"></path><path d="M2 13 4 8l2 2-2 5Z"></path><path d="M22 13 20 8l-2 2 2 5Z"></path><path d="M12 22 4 15l10-10 8 7Z"></path></svg>
+            </h1>
+            <p class="text-lg text-amber-700">Agama Islam di Malaysia</p>
+        </div>
+
+        <!-- Main Content Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-6 relative">
+            <!-- Toggle Button for Mobile Sidebar -->
+            <button id="toggle-sidebar" class="lg:hidden fixed bottom-4 right-4 z-50 p-3 bg-amber-600 text-white rounded-full shadow-lg hover:bg-amber-700 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+            </button>
+            <!-- Toggle Button for Desktop Sidebar -->
+            <button id="toggle-sidebar-desktop" class="hidden lg:block fixed top-4 left-4 z-50 p-2 bg-amber-600 text-white rounded-full shadow-lg hover:bg-amber-700 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+            </button>
+
+
+            <!-- Left Panel (Sidebar) -->
+            <div id="left-panel" class="lg:col-span-1 space-y-6 sidebar-panel">
+                <!-- Close button for mobile sidebar -->
+                <div class="lg:hidden flex justify-end mb-4">
+                    <button id="close-sidebar" class="p-2 bg-red-500 text-white rounded-full hover:bg-red-600">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                    </button>
+                </div>
+                <!-- Status Card -->
+                <div class="bg-white/80 backdrop-blur-sm rounded-xl shadow-lg p-4">
+                    <h3 class="font-bold text-lg mb-4 flex items-center text-gray-800">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 mr-2 text-yellow-500"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                        Status Pembesar
+                    </h3>
+                    <!-- Overall Score Display -->
+                    <div id="overall-score-container" class="mb-4 p-2 bg-amber-50 rounded-md text-center">
+                        <span class="text-sm font-medium text-amber-700">Skor Keseluruhan: </span>
+                        <span id="overall-score-value" class="text-xl font-bold text-amber-900">0</span>
+                    </div>
+                    <div id="stats-container"></div>
+                </div>
+
+                <!-- Inventory -->
+                <div id="inventory-container" class="bg-white/80 backdrop-blur-sm rounded-xl shadow-lg p-4"></div>
+
+                <!-- Achievements -->
+                <div id="achievements-container" class="bg-white/80 backdrop-blur-sm rounded-xl shadow-lg p-4"></div>
+
+                <!-- Settings -->
+                <div class="bg-white/80 backdrop-blur-sm rounded-xl shadow-lg p-4">
+                    <h3 class="font-bold text-lg mb-3 text-gray-800">Tetapan</h3>
+                    <div class="space-y-3">
+                        <button id="save-game" class="w-full p-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors">Simpan Permainan</button>
+                        <button id="load-game" class="w-full p-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors">Muat Permainan</button>
+                        <button id="restart-game" class="w-full p-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors mt-4">Mula Semula</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Panel (Main Content Area) -->
+            <div id="main-content-area" class="lg:col-span-3 main-content-area">
+                <div class="bg-white/80 backdrop-blur-sm rounded-xl shadow-lg p-6 min-h-[500px]">
+                    <div class="mb-6">
+                        <div class="bg-amber-50 border-l-4 border-amber-400 p-4 rounded-lg">
+                            <p id="story-text" class="text-gray-800 leading-relaxed text-lg min-h-[150px]"></p>
+                        </div>
+                    </div>
+                    <div id="choices-container" class="space-y-3"></div>
+                    <div id="loading-indicator" class="flex items-center justify-center p-4 hidden">
+                        <div class="flex space-x-2"><div class="w-3 h-3 bg-amber-500 rounded-full animate-bounce"></div><div class="w-3 h-3 bg-amber-500 rounded-full animate-bounce" style="animation-delay: 0.1s"></div><div class="w-3 h-3 bg-amber-500 rounded-full animate-bounce" style="animation-delay: 0.2s"></div></div>
+                        <p class="ml-4 text-amber-700">Menaip...</p>
+                    </div>
+                    <!-- Skip Typing Button -->
+                    <button id="skip-typing-button" class="w-full p-2 mt-4 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors hidden">Langkau Menaip</button>
+                </div>
+
+                <div class="mt-6 bg-blue-50 border border-blue-200 rounded-xl p-4">
+                    <h4 class="font-bold text-blue-800 mb-2">💡 Tips Permainan:</h4>
+                    <ul class="text-sm text-blue-700 list-disc list-inside space-y-1">
+                        <li><strong>Kebijaksanaan</strong> meningkat apabila anda belajar dan membuat keputusan yang tepat.</li>
+                        <li><strong>Hormat</strong> diperoleh dengan menghargai kepelbagaian agama dan budaya.</li>
+                        <li><strong>Perpaduan</strong> bertambah apabila anda berjaya menyatukan masyarakat.</li>
+                        <li><strong>Integriti</strong> berguna untuk menegakkan keadilan dan kebenaran.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 hidden z-50">
+        <div id="modal-content" class="modal bg-white rounded-xl shadow-2xl p-6 text-center max-w-lg mx-auto w-full">
+            <!-- Modal content will be injected here -->
+        </div>
+    </div>
+
+    <script type="module" src="https://cdn.jsdelivr.net/gh/cikgumie/rpg_sej_tahun5_unit1@main/script.js"></script>
+    <script>
+        // --- Data Permainan ---
+        // Anda boleh mengubah semua teks, pilihan, dan senario di bawah ini
+        // untuk mencipta permainan anda sendiri.
+        const gameData = {
+            states: {
+                // States are not directly used in this Unit's narrative flow but kept for consistency
+                perlis: { name: 'Perlis', ruler: 'Raja', difficulty: 1, color: 'bg-yellow-100' },
+                kedah: { name: 'Kedah', ruler: 'Sultan', difficulty: 2, color: 'bg-red-100' },
+                perak: { name: 'Perak', ruler: 'Sultan', difficulty: 2, color: 'bg-gray-100' },
+                selangor: { name: 'Selangor', ruler: 'Sultan', difficulty: 3, color: 'bg-blue-100' },
+                melaka: { name: 'Melaka', ruler: 'Yang di-Pertua Negeri', difficulty: 1, color: 'bg-orange-100' },
+            },
+            scenarios: {
+                intro: {
+                    text: "Selamat datang, cendekiawan muda! Anda telah ditugaskan untuk mengembara merentasi masa dan sejarah Tanah Melayu bagi memahami Unit 2: Agama Islam di Malaysia. Misi anda adalah untuk mendalami latar belakang agama, sejarah kedatangan Islam, kedudukannya dalam pentadbiran, dan peranannya dalam membentuk perpaduan.",
+                    choices: [
+                        { text: "Mulakan Pengembaraan Ilmu", action: 'main_quest_hub', stats: { kebijaksanaan: 5 } },
+                        { text: "✨ Dapatkan Bantuan Penasihat AI", action: 'learn_from_ai' }
+                    ]
+                },
+                learn_from_ai: {
+                    text: "Penasihat AI sedia membantu anda memahami konsep-konsep sukar dalam unit ini. Topik mana yang ingin anda terokai?",
+                    hasGeminiAdvice: true,
+                    choices: [
+                        { text: "Latar Belakang Agama dan Kepercayaan", action: 'quest_religion_background' },
+                        { text: "Kedatangan Agama Islam di Melaka", action: 'quest_islam_melaka' },
+                        { text: "Agama Islam dalam Pentadbiran", action: 'quest_islam_admin' },
+                        { text: "Agama Persekutuan Malaysia", action: 'quest_federal_religion' },
+                        { text: "Islam dan Perpaduan Masyarakat", action: 'quest_islam_unity' },
+                        { text: "Kembali ke Pengembaraan Ilmu", action: 'main_quest_hub' }
+                    ]
+                },
+                main_quest_hub: {
+                    text: "Anda kini berada di Perpustakaan Sejarah Agung. Di sini, anda boleh memilih babak sejarah mana yang ingin anda selami untuk melengkapkan pemahaman anda tentang Agama Islam di Malaysia.",
+                    choices: [
+                        { text: "Selami Latar Belakang Agama dan Kepercayaan Masyarakat di Tanah Melayu", action: 'quest_religion_background', stats: { kebijaksanaan: 5 } },
+                        { text: "Telusuri Sejarah Kedatangan Agama Islam pada Zaman Kesultanan Melayu Melaka", action: 'quest_islam_melaka', stats: { kebijaksanaan: 5 } },
+                        { text: "Fahami Kedudukan Agama Islam dalam Pentadbiran Negeri-negeri Melayu", action: 'quest_islam_admin', stats: { kebijaksanaan: 5 } },
+                        { text: "Terokai Kedudukan Agama Islam sebagai Agama Persekutuan", action: 'quest_federal_religion', stats: { kebijaksanaan: 5 } },
+                        { text: "Pelajari Peranan Agama Islam untuk Membentuk Perpaduan", action: 'quest_islam_unity', stats: { kebijaksanaan: 5 } },
+                        { text: "Selesai semua babak? Tamatkan Pengembaraan Unit 2", action: 'check_unit_completion' }
+                    ]
+                },
+
+                // 1. Latar belakang agama dan kepercayaan masyarakat di Tanah Melayu
+                quest_religion_background: {
+                    text: "Anda kembali ke zaman awal Tanah Melayu. Anda melihat pelbagai komuniti dengan kepercayaan berbeza. Seorang tua bijaksana menawarkan untuk berkongsi pengetahuannya.",
+                    hasGeminiAdvice: true,
+                    choices: [
+                        { text: "Dengar tentang Animisme, kepercayaan terawal", action: 'scene_animism', stats: { kebijaksanaan: 5 } },
+                        { text: "Fahami pengaruh Hindu dan Buddha melalui perdagangan", action: 'scene_hindu_buddha', stats: { kebijaksanaan: 5 } },
+                        { text: "Selami kedatangan awal Agama Islam", action: 'scene_early_islam', stats: { kebijaksanaan: 5 } },
+                        { text: "Pelajari tentang Agama Kristian dan penjajah", action: 'scene_christianity', stats: { kebijaksanaan: 5 } },
+                        { text: "Kembali ke Perpustakaan Sejarah Agung", action: 'main_quest_hub', stats: { hormat: 5 } }
+                    ]
+                },
+                scene_animism: {
+                    text: "Anda mempelajari tentang Animisme, kepercayaan terawal yang menghormati roh nenek moyang, makhluk halus dan semangat alam. Anda melihat bagaimana ia membentuk cara hidup masyarakat purba.",
+                    choices: [
+                        { text: "Kembali ke Latar Belakang Agama", action: 'quest_religion_background' }
+                    ]
+                },
+                scene_hindu_buddha: {
+                    text: "Anda menyaksikan kedatangan pedagang dari India yang membawa Agama Hindu (konsep kelahiran semula) dan Buddha ('Jalan Lapan Lapis Mulia'). Pengaruhnya terlihat pada seni dan budaya tempatan.",
+                    choices: [
+                        { text: "Kembali ke Latar Belakang Agama", action: 'quest_religion_background' }
+                    ]
+                },
+                scene_early_islam: {
+                    text: "Anda melihat pedagang dan pendakwah Islam tiba, membawa ajaran Rukun Islam dan Rukun Iman. Anda merasakan aura kedamaian yang mereka bawa.",
+                    choices: [
+                        { text: "Kembali ke Latar Belakang Agama", action: 'quest_religion_background' }
+                    ]
+                },
+                scene_christianity: {
+                    text: "Anda memerhatikan kedatangan penjajah Portugis, Belanda, dan British, yang turut membawa Agama Kristian ke Tanah Melayu.",
+                    choices: [
+                        { text: "Kembali ke Latar Belakang Agama", action: 'quest_religion_background' }
+                    ]
+                },
+
+                // 2. Sejarah kedatangan agama Islam pada zaman Kesultanan Melayu Melaka
+                quest_islam_melaka: {
+                    text: "Anda kini berada di pelabuhan Melaka pada abad ke-15, sebuah pusat perdagangan maritim yang sibuk. Seorang nakhoda tua menghampiri anda, sedia berkongsi kisah kedatangan Islam.",
+                    hasGeminiAdvice: true,
+                    choices: [
+                        { text: "Tanya tentang bukti-bukti kedatangan Islam", action: 'scene_melaka_evidence', stats: { kebijaksanaan: 5 } },
+                        { text: "Tanya tentang faktor-faktor penyebaran Islam", action: 'scene_melaka_factors', stats: { kebijaksanaan: 5 } },
+                        { text: "Tanya tentang perundangan Islam di Melaka", action: 'scene_melaka_law', stats: { kebijaksanaan: 5 } },
+                        { text: "Kembali ke Perpustakaan Sejarah Agung", action: 'main_quest_hub', stats: { integriti: 5 } }
+                    ]
+                },
+                scene_melaka_evidence: {
+                    text: "Nakhoda itu menunjukkan ukiran kuno. 'Lihat, ini seperti Batu Bersurat Terengganu (1303) dan Pengkalan Kempas (1467)! Bukti kukuh Islam tiba di sini.'",
+                    choices: [
+                        { text: "Kembali ke Kedatangan Islam di Melaka", action: 'quest_islam_melaka' }
+                    ]
+                },
+                scene_melaka_factors: {
+                    text: "Nakhoda menjelaskan, 'Pedagang Islam dari Arab dan India, ulama seperti Syeikh Abdul Aziz, dan perkahwinan diraja Sultan Megat Iskandar Shah dengan puteri Pasai, semuanya memainkan peranan besar dalam penyebaran Islam!'",
+                    choices: [
+                        { text: "Kembali ke Kedatangan Islam di Melaka", action: 'quest_islam_melaka' }
+                    ]
+                },
+                scene_melaka_law: {
+                    text: "Anda melihat salinan Hukum Kanun Melaka (44 fasal) dan Undang-undang Laut Melaka (25 fasal). Anda sedar betapa Islam membentuk sistem perundangan dan kehidupan masyarakat.",
+                    choices: [
+                        { text: "Kembali ke Kedatangan Islam di Melaka", action: 'quest_islam_melaka' }
+                    ]
+                },
+
+                // 3. Kedudukan agama Islam dalam pentadbiran negeri-negeri Melayu hingga merdeka
+                quest_islam_admin: {
+                    text: "Anda kini berada di sebuah dewan istana, menyaksikan bagaimana agama Islam mempengaruhi pentadbiran dari zaman dahulu hingga era moden.",
+                    hasGeminiAdvice: true,
+                    choices: [
+                        { text: "Perhatikan peranan Islam sebelum penjajahan", action: 'scene_admin_pre_colonial', stats: { kebijaksanaan: 5 } },
+                        { text: "Saksikan perubahan semasa penjajahan British", action: 'scene_admin_british', stats: { kebijaksanaan: 5 } },
+                        { text: "Fahami kedudukan Islam semasa pendudukan Jepun", action: 'scene_admin_japan', stats: { kebijaksanaan: 5 } },
+                        { text: "Kembali ke Perpustakaan Sejarah Agung", action: 'main_quest_hub', stats: { integriti: 5 } }
+                    ]
+                },
+                scene_admin_pre_colonial: {
+                    text: "Anda melihat bagaimana Hukum Kanun Melaka menjadi rujukan utama, membentuk undang-undang di negeri-negeri lain seperti Pahang dan Perak. Islam adalah teras pentadbiran.",
+                    choices: [
+                        { text: "Kembali ke Islam dalam Pentadbiran", action: 'quest_islam_admin' }
+                    ]
+                },
+                scene_admin_british: {
+                    text: "Anda memerhatikan campur tangan British. Pelaksanaan undang-undang Islam dihadkan, namun Sultan kekal sebagai ketua agama dan adat. Undang-undang Islam hanya untuk kekeluargaan, harta pusaka, dan zakat.",
+                    choices: [
+                        { text: "Kembali ke Islam dalam Pentadbiran", action: 'quest_islam_admin' }
+                    ]
+                },
+                scene_admin_japan: {
+                    text: "Semasa pendudukan Jepun, anda melihat Majlis Agama Islam ditubuhkan, walaupun pelaksanaan undang-undang Islam masih dihadkan. Sultan tetap ketua agama.",
+                    choices: [
+                        { text: "Kembali ke Islam dalam Pentadbiran", action: 'quest_islam_admin' }
+                    ]
+                },
+
+                // 4. Kedudukan agama Islam sebagai agama Persekutuan
+                quest_federal_religion: {
+                    text: "Anda kini berada di Malaysia moden, sebuah negara yang kaya dengan kepelbagaian. Anda perlu memahami kedudukan Islam sebagai agama Persekutuan.",
+                    hasGeminiAdvice: true,
+                    choices: [
+                        { text: "Fahami konsep Agama Persekutuan dalam Perlembagaan", action: 'scene_federal_constitution', stats: { kebijaksanaan: 5 } },
+                        { text: "Saksikan amalan agama-agama lain secara bebas", action: 'scene_religious_freedom', stats: { kebijaksanaan: 5 } },
+                        { text: "Kembali ke Perpustakaan Sejarah Agung", action: 'main_quest_hub', stats: { hormat: 5 } }
+                    ]
+                },
+                scene_federal_constitution: {
+                    text: "Anda membaca Perlembagaan Persekutuan yang jelas menyatakan Islam sebagai agama Persekutuan, lambang identiti negara.",
+                    choices: [
+                        { text: "Kembali ke Agama Persekutuan Malaysia", action: 'quest_federal_religion' }
+                    ]
+                },
+                scene_religious_freedom: {
+                    text: "Anda menyaksikan pelbagai perayaan agama dan kaum disambut meriah. Walaupun Islam agama rasmi, kebebasan beragama lain dijamin dan dihormati.",
+                    choices: [
+                        { text: "Kembali ke Agama Persekutuan Malaysia", action: 'quest_federal_religion' }
+                    ]
+                },
+
+                // 5. Peranan agama Islam untuk membentuk perpaduan
+                quest_islam_unity: {
+                    text: "Anda kini di sebuah komuniti yang berhadapan dengan cabaran perpaduan. Anda perlu menerapkan nilai-nilai Islam untuk menyatukan mereka.",
+                    hasGeminiAdvice: true,
+                    choices: [
+                        { text: "Terapkan nilai sejagat untuk perpaduan", action: 'scene_universal_values', stats: { perpaduan: 5 } },
+                        { text: "Fokus pada nilai kemanusiaan untuk kesejahteraan", action: 'scene_humanitarian_values', stats: { perpaduan: 5 } },
+                        { text: "Kembali ke Perpustakaan Sejarah Agung", action: 'main_quest_hub', stats: { perpaduan: 5 } }
+                    ]
+                },
+                scene_universal_values: {
+                    text: "Anda memimpin perbincangan tentang kasih sayang, toleransi (tiada paksaan dalam beragama, menghormati tempat ibadat), kesederhanaan, dan perdamaian. Masyarakat mula memahami.",
+                    choices: [
+                        { text: "Kembali ke Islam dan Perpaduan Masyarakat", action: 'quest_islam_unity' }
+                    ]
+                },
+                scene_humanitarian_values: {
+                    text: "Anda menekankan kepentingan hubungan baik sesama manusia (berbaik sangka, saling menghormati), dengan Tuhan (mengamalkan ajaran), dan dengan alam sekitar (memelihara alam).",
+                    choices: [
+                        { text: "Kembali ke Islam dan Perpaduan Masyarakat", action: 'quest_islam_unity' }
+                    ]
+                },
+
+                // Check Completion and Final Success
+                check_unit_completion: {
+                    text: "Anda telah menelusuri semua babak sejarah. Adakah anda yakin telah memahami sepenuhnya Unit 2: Agama Islam di Malaysia?",
+                    choices: [
+                        { text: "Ya, saya yakin! Tamatkan pengembaraan Unit 2.", action: 'unit2_complete_success', stats: { kebijaksanaan: 10 } },
+                        { text: "Tidak, saya ingin mengulang kaji beberapa babak.", action: 'main_quest_hub' }
+                    ]
+                },
+                unit2_complete_success: {
+                    text: "Tahniah, cendekiawan! Anda telah berjaya memahami Unit 2: Agama Islam di Malaysia dengan cemerlang. Pengetahuan anda tentang sejarah dan peranan Islam dalam masyarakat dan pentadbiran negara kini sangat mendalam. Anda telah memperoleh gelaran 'Pakar Sejarah Islam'.",
+                    achievement: 'Pakar Sejarah Islam',
+                    isEnd: true,
+                    choices: [ { text: "Mulakan permainan baharu", action: 'restart' }]
+                },
+                restart: {
+                    text: "Permainan dimulakan semula. Selamat datang ke Unit 2: Agama Islam di Malaysia! Anda akan meneroka latar belakang agama di Tanah Melayu, sejarah kedatangan Islam, kedudukannya dalam pentadbiran, dan peranannya dalam membentuk perpaduan.",
+                    choices: [
+                        { text: "Mulakan Pengembaraan Ilmu", action: 'main_quest_hub', stats: { kebijaksanaan: 5 } },
+                        { text: "✨ Dapatkan Bantuan Penasihat AI", action: 'learn_from_ai' }
+                    ]
+                },
+                // Senario asal yang tidak digunakan dalam aliran Unit 2 yang baru, tetapi dikekalkan jika ada keperluan lain.
+                // Ini adalah senario 'legacy' dari permainan asal, tidak akan diakses melalui aliran Unit 2.
+                learn_waadat_daulat: {
+                    text: "Penasihat istana menjelaskan, 'Waadat itu perjanjian suci antara Raja dengan rakyat. Raja berjanji adil, rakyat berjanji taat. Dari sinilah lahirnya Daulat, lambang kekuasaan Raja yang berwibawa, dan Derhaka, keingkaran yang membawa tulah.'",
+                    choices: [
+                        { text: "Faham. Mulakan pengembaraan sekarang.", action: 'start_journey', stats: { kebijaksanaan: 5 } }
+                    ]
+                },
+                start_journey: {
+                    text: "Anda kini berada di Perlis. Raja Perlis menyambut kedatangan anda. 'Wahai pembesar muda, tunjukkan kebijaksanaan dalam menangani masalah rakyat.' Seorang petani datang mengadu tentang masalah tanah.",
+                    hasGeminiAdvice: true,
+                    choices: [
+                        { text: "Dengar aduan petani", action: 'listen_farmer', stats: { kebijaksanaan: 10, kesetiaan: 5 } },
+                        { text: "Suruh petani berjumpa pembesar lain", action: 'delegate_problem', stats: { daulat: -10, kesetiaan: -10 } },
+                    ]
+                },
+                listen_farmer: {
+                    text: "Petani bercerita tanahnya dirampas oleh pembesar tempatan. Raja Perlis terkesan dengan sikap anda.",
+                    hasGeminiAdvice: true,
+                    choices: [
+                        { text: "Siasat sendiri kes ini", action: 'investigate_land', stats: { kebijaksanaan: 10, daulat: 5 } },
+                        { text: "Lapor kepada Raja untuk tindakan", action: 'report_to_raja', stats: { kesetiaan: 10 } },
+                    ]
+                },
+                delegate_problem: {
+                    text: "Anda menyuruh petani itu pergi. Petani itu hampa. Tindakan anda menyebabkan rakyat mempersoalkan 'Daulat' anda. Raja Perlis kelihatan kecewa.",
+                    hasGeminiAdvice: true,
+                    choices: [
+                        { text: "Mohon maaf kepada Raja", action: 'apologize_perlis_ruler', stats: { kesetiaan: 10, daulat: 5 } },
+                        { text: "Teruskan ke Kedah", action: 'travel_kedah' }
+                    ]
+                },
+                apologize_perlis_ruler: {
+                    text: "Anda memohon maaf kepada Raja Perlis. Baginda menghargai kesopanan anda dan memberi peluang kedua untuk mendengar masalah petani.",
+                    choices: [ { text: "Kembali mendengar aduan petani", action: 'listen_farmer', stats: { kebijaksanaan: 5, kesetiaan: 5 } }]
+                },
+                investigate_land: {
+                    text: "Siasatan anda mendapati pembesar tempatan itu memang bersalah. Anda ada bukti kukuh.",
+                    hasGeminiAdvice: true,
+                    choices: [
+                        { text: "Hadirkan bukti kepada Raja", action: 'present_evidence', stats: { daulat: 15, kesetiaan: 10 } },
+                        { text: "Konfrontasi pembesar korup", action: 'confront_corrupt', stats: { kekuatan: 10, daulat: -5 } },
+                    ]
+                },
+                report_to_raja: {
+                    text: "Anda melaporkan kepada Raja. Keadilan ditegakkan, tetapi prosesnya lambat. Rakyat melihat anda setia kepada sistem, tetapi kurang berani.",
+                    choices: [ { text: "Teruskan perjalanan ke Kedah", action: 'travel_kedah', stats: { kebijaksanaan: 5 } }]
+                },
+                confront_corrupt: {
+                    text: "Anda bersemuka dengan pembesar korup. Anda berjaya, tetapi tindakan agresif anda menimbulkan ketidakpuasan hati. Raja menasihati anda tentang diplomasi.",
+                    choices: [ { text: "Meneruskan perjalanan ke Kedah", action: 'travel_kedah', stats: { kekuatan: 5 } }]
+                },
+                present_evidence: {
+                    text: "Raja Perlis sangat gembira. Pembesar korup dihukum. Anda diberi gelaran 'Pembela Keadilan' dan kepercayaan untuk melawat negeri seterusnya.",
+                    achievement: 'Pembela Keadilan',
+                    unlocks: 'kedah',
+                    canDraftDecree: true,
+                    choices: [
+                        { text: "Pergi ke Melaka untuk misi seterusnya (Negeri tanpa Raja)", action: 'travel_melaka' },
+                        { text: "Pergi ke Kedah untuk misi seterusnya", action: 'travel_kedah' }
+                    ]
+                },
+                travel_melaka: {
+                    text: "Anda tiba di Melaka, sebuah negeri yang kini diketuai oleh Yang di-Pertua Negeri. Anda perlu memahami peranan beliau dalam pentadbiran negeri.",
+                    hasGeminiAdvice: true,
+                    choices: [
+                        { text: "Berjumpa dengan Yang di-Pertua Negeri untuk memahami peranannya", action: 'meet_ydpn', stats: { kebijaksanaan: 10 } },
+                        { text: "Fokus pada isu rakyat dan adat tempatan", action: 'focus_local_issues', stats: { kesetiaan: 5 } }
+                    ]
+                },
+                meet_ydpn: {
+                    text: "Yang di-Pertua Negeri menjelaskan peranannya sebagai ketua negeri di bawah perlembagaan, mewakili Yang di-Pertuan Agong. Anda kini lebih faham tentang struktur pemerintahan moden.",
+                    choices: [
+                        { text: "Teruskan perjalanan ke Kedah", action: 'travel_kedah' }
+                    ]
+                },
+                focus_local_issues: {
+                    text: "Anda memilih untuk memahami rakyat Melaka dan adat istiadat mereka. Walaupun tidak bertemu Yang di-Pertua Negeri, anda belajar tentang kepentingan budaya tempatan.",
+                    choices: [
+                        { text: "Teruskan perjalanan ke Kedah", action: 'travel_kedah' }
+                    ]
+                },
+                travel_kedah: {
+                    text: "Anda tiba di Kedah. Sultan memberitahu anda tentang perpecahan rakyat mengenai cara menghormati institusi raja. Anda perlu menyatukan mereka.",
+                    hasGeminiAdvice: true,
+                    choices: [
+                        { text: "Adakan majlis dialog terbuka", action: 'open_dialogue_kedah', stats: { kebijaksanaan: 15, kesetiaan: 10 } },
+                        { text: "Gunakan autoriti untuk paksa damai", action: 'force_peace_kedah', stats: { kekuatan: 10, daulat: -10 } }
+                    ]
+                },
+                force_peace_kedah: {
+                    text: "Anda memaksa mereka berdamai. Perdamaian itu hanya di permukaan. Rakyat bimbang tentang 'Daulat' yang dipaksakan.",
+                    choices: [ { text: "Teruskan ke negeri Perak", action: 'travel_perak', stats: { daulat: -5, kesetiaan: -5 } }]
+                },
+                open_dialogue_kedah: {
+                    text: "Dialog anda berjaya. Anda menjelaskan konsep Waadat dan menyatukan rakyat. Sultan menganugerahkan anda 'Pingat Perpaduan'.",
+                    achievement: 'Pingat Perpaduan',
+                    unlocks: 'perak',
+                    canDraftDecree: true,
+                    choices: [
+                        { text: "Sambung ke negeri Perak", action: 'travel_perak', stats: { daulat: 5, kesetiaan: 5 } },
+                        { text: "Hadapi cubaan derhaka di sebuah perkampungan", action: 'encounter_derhaka', stats: { kekuatan: 5 } }
+                    ]
+                },
+                encounter_derhaka: {
+                    text: "Di sebuah perkampungan, seorang ketua kampung secara terbuka menentang titah Sultan. Rakyat mula berbelah bahagi.",
+                    hasGeminiAdvice: true,
+                    choices: [
+                        { text: "Berunding dengan ketua kampung untuk memahami punca", action: 'negotiate_derhaka', stats: { kebijaksanaan: 15, kesetiaan: 10 } },
+                        { text: "Tunjukkan kekuatan dan tegaskan kedaulatan Sultan", action: 'assert_daulat', stats: { kekuatan: 15, daulat: -5 } }
+                    ]
+                },
+                negotiate_derhaka: {
+                    text: "Anda berjaya berunding dan ketua kampung memahami kesilapannya. Kedaulatan Sultan dihormati semula tanpa paksaan.",
+                    choices: [ { text: "Teruskan ke negeri Perak", action: 'travel_perak', stats: { daulat: 10, kesetiaan: 5 } }]
+                },
+                assert_daulat: {
+                    text: "Anda menunjukkan kekuatan dan ketua kampung tunduk. Namun, rasa tidak puas hati masih terpendam di kalangan rakyat.",
+                    choices: [ { text: "Teruskan ke negeri Perak", action: 'travel_perak', stats: { kekuatan: 5, kesetiaan: -5 } }]
+                },
+                travel_perak: {
+                    text: "Anda tiba di Perak. Sultan bimbang tentang fitnah dari luar yang cuba melemahkan institusi Raja.",
+                    hasGeminiAdvice: true,
+                    choices: [
+                        { text: "Anjurkan kempen kesedaran", action: 'awareness_campaign_perak', stats: { kebijaksanaan: 20, kesetiaan: 15 } },
+                        { text: "Siasat dalang penyebar fitnah", action: 'investigate_fitnah_perak', stats: { kebijaksanaan: 15, kekuatan: 10 } },
+                        { text: "Perhatikan pengaruh British di negeri ini", action: 'observe_british_influence', stats: { kebijaksanaan: 5 } }
+                    ]
+                },
+                observe_british_influence: {
+                    text: "Anda melihat Penasihat British semakin campur tangan dalam urusan pentadbiran negeri, walaupun Sultan masih ketua agama dan adat.",
+                    hasGeminiAdvice: true,
+                    choices: [
+                        { text: "Cuba berunding dengan Penasihat British", action: 'negotiate_british', stats: { kebijaksanaan: 10, daulat: -5 } },
+                        { text: "Laporkan pemerhatian kepada Sultan secara rahsia", action: 'report_secretly_to_sultan', stats: { kesetiaan: 10 } }
+                    ]
+                },
+                negotiate_british: {
+                    text: "Rundingan anda dengan Penasihat British menemui jalan buntu. Mereka berkeras dengan dasar mereka, tetapi anda mendapat sedikit pemahaman tentang cara mereka beroperasi.",
+                    choices: [ { text: "Lanjutkan ke Selangor", action: 'travel_selangor' }]
+                },
+                report_secretly_to_sultan: {
+                    text: "Sultan menghargai kesetiaan anda dan berjanji akan mencari jalan. Anda merasakan kepentingan perlembagaan di masa hadapan.",
+                    choices: [ { text: "Lanjutkan ke Selangor", action: 'travel_selangor' }]
+                },
+                awareness_campaign_perak: {
+                    text: "Kempen anda berjaya mendidik rakyat. Kesetiaan mereka utuh dan fitnah pudar.",
+                    unlocks: 'selangor',
+                    choices: [ { text: "Lanjutkan ke Selangor", action: 'travel_selangor' }]
+                },
+                investigate_fitnah_perak: {
+                    text: "Anda menemui dalangnya - pedagang asing. Anda mendedahkan mereka dan menyelamatkan 'Daulat' Raja.",
+                    unlocks: 'selangor',
+                    choices: [ { text: "Lanjutkan ke Selangor", action: 'travel_selangor' }]
+                },
+                travel_selangor: {
+                    text: "Anda tiba di Selangor. Terdapat perbalahan mengenai pewarisan takhta yang mengancam kestabilan.",
+                    hasGeminiAdvice: true,
+                    choices: [
+                        { text: "Panggil semua pembesar berbincang", action: 'roundtable_discussion_selangor', stats: { kebijaksanaan: 20 } },
+                        { text: "Siasat tuntutan pewaris", action: 'investigate_succession_selangor', stats: { kebijaksanaan: 15 } },
+                    ]
+                },
+                roundtable_discussion_selangor: {
+                    text: "Anda memimpin perbincangan dan mencari kompromi yang adil. Kestabilan takhta terjamin.",
+                    choices: [{ text: "Laporkan kejayaan & tamatkan misi", action: 'final_mission_report' }]
+                },
+                investigate_succession_selangor: {
+                    text: "Siasatan anda mendedahkan penipuan salah seorang pewaris. Anda menyelamatkan takhta.",
+                    choices: [{ text: "Laporkan kejayaan & tamatkan misi", action: 'final_mission_report' }]
+                },
+                final_mission_report: {
+                    text: "Anda kembali ke istana utama. Raja Besar menganugerahkan anda gelaran 'Tun Daulat Wibawa'. Anda kini diminta untuk memahami sistem Raja Berperlembagaan yang akan datang.",
+                    achievement: 'Tun Daulat Wibawa',
+                    canDraftDecree: true,
+                    choices: [
+                        { text: "Pelajari tentang Raja Berperlembagaan", action: 'learn_constitutional_monarchy', stats: { kebijaksanaan: 10 } },
+                        { text: "Tamat permainan", action: 'game_complete_success' }
+                    ]
+                },
+                learn_constitutional_monarchy: {
+                    text: "Penasihat Istana menjelaskan, 'Selepas merdeka, kuasa Raja akan tertakluk di bawah Perlembagaan. Raja akan menjadi Ketua Negara, lambang perpaduan, tetapi pentadbiran harian akan diuruskan oleh Perdana Menteri dan Jemaah Menteri.'",
+                    choices: [
+                        { text: "Faham. Misi selesai.", action: 'game_complete_success' }
+                    ]
+                },
+                game_complete_success: {
+                    text: "Anda telah berjaya! Anda adalah Legenda Daulat yang sebenar! Rakyat hidup aman di bawah naungan Raja yang adil. Tahniah!",
+                    isEnd: true,
+                    choices: [ { text: "Mulakan permainan baharu", action: 'restart' }]
+                },
+            }
+        };
+    </script>
+</body>
+</html>
