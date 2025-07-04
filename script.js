@@ -284,7 +284,7 @@ function handleChoice(choice) {
 // --- Gemini API Integration ---
 async function callGemini(prompt) {
     showModal("Penasihat sedang berfikir...", "Sila tunggu sebentar...", "loading");
-    const apiKey = ""; // If you want to use models other than gemini-2.0-flash or imagen-3.0-generate-002, provide an API key here. Otherwise, leave this as-is.
+    const apiKey = "AIzaSyBKiomCluWdEckgj7Le75x7gTU6FtPfdfM"; // If you want to use models other than gemini-2.0-flash or imagen-3.0-generate-002, provide an API key here. Otherwise, leave this as-is.
     const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
     const payload = {
         contents: [{ role: "user", parts: [{ text: prompt }] }]
